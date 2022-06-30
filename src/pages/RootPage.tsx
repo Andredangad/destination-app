@@ -1,21 +1,40 @@
-import React from 'react';
-import logo from '../img/logo.svg';
+import { css, cx } from '@emotion/css';
+import Button from '@mui/material/Button';
+import React, { FC } from 'react';
+import Actions from '../components/shared/Actions';
+// import logo from '../img/logo.svg';
 import './App.css';
 
-function App() {
+// interface Props {}
+
+export const RootPage: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+    <div className={style.global}>
+      <div className={style.title}>Destinations</div>
+      <Actions>
+        <Button className={cx(style.button, style.addButton)} variant="contained">
+          + Ajouter
+        </Button>
+      </Actions>
     </div>
   );
-}
+};
 
-export default App;
+const style = {
+  button: css`
+    height: 40px;
+  `,
+  addButton: css`
+    background-color: #19d26f !important;
+    font-weight: bold !important;
+  `,
+  global: css`
+    padding: 80px;
+    background-color: whitesmoke;
+    min-height: 800px;
+  `,
+  title: css`
+    font-size: 25px;
+    display: inline-block;
+  `,
+};

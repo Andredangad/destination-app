@@ -10,6 +10,7 @@ import './App.css';
 
 export const RootPage: FC = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
+  console.log(isAddOpen);
   return (
     <div className={style.global}>
       <div className={style.title}>Destinations</div>

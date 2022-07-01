@@ -14,7 +14,6 @@ const style = {
     display: inline-block;
     padding: 2 0;
     justify-content: flex-end;
-    min-height: 60px;
     float: right;
   `,
 };

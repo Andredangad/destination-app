@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SetStateAction } from 'react';
 
-interface State<T> {
-  data: T;
-  setData: React.Dispatch<React.SetStateAction<T>>;
-}
+export function useLocalStorage<T>(key: string, initialValue: T): [T, React.Dispatch<SetStateAction<T>>] {
+  const [data, setData] = useState<T>(getStorageValue(key, initialValue));
 
-export function useLocalStorage<T>(key: string, defaultValue: T): State<T> {
-  const [data, setData] = useState(() => {
-    return getStorageValue(key, defaultValue);
-  });
   useEffect(() => {
     try {
+      // setData((prevData) => [...prevData, defaultValue]);
       localStorage.setItem(key, JSON.stringify(data));
     } catch (error) {
       console.error(`could not set data to ${key}`, data);
     }
   }, [key, data]);
 
-  return { data, setData };
+  return [data, setData];
 }
 
-function getStorageValue<T>(key: string, defaultValue: T): T {
+function getStorageValue<T>(key: string, initialValue: T): T {
   const items = localStorage.getItem(key);
   if (items === null) {
-    return defaultValue;
+    return initialValue;
   }
   return JSON.parse(items);
 }

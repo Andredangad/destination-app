@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import {
   Box,
   Button,
-  FormControl,
+  Grid,
   FormControlLabel,
   Modal,
   OutlinedInput,
@@ -19,15 +19,6 @@ interface Props {
   onClose: () => void;
   addDestination: (data: Destination) => void;
 }
-
-// function isValidImageUrl(imageUrl: string) {
-//   try {
-//     new URL(imageUrl);
-//   } catch (_) {
-//     return false;
-//   }
-//   return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(imageUrl);
-// }
 
 function isDestinationValid(destination: Destination): boolean {
   return (
@@ -92,51 +83,53 @@ export default function AddDestination({ isOpen, onClose, addDestination }: Prop
           }}
           variant="outlined"
         />
-        <div className={style.input}>
-          <FormControl sx={{ width: 0.22, paddingRight: 3 }} variant="outlined">
+
+        <Grid container spacing={2} alignItems="center" justifyContent="center" marginTop="0px">
+          <Grid item xs={3}>
             <OutlinedInput
               onInput={(event: ChangeEvent<HTMLInputElement>) => {
-                setData({ ...data, citizenCount: parseInt(event.target.value, 10) });
+                setData({ ...data, citizenCount: parseFloat(event.target.value) });
               }}
               placeholder="Nb Habitants"
             />
-          </FormControl>
-          <FormControl sx={{ width: 0.22, paddingRight: 3 }} variant="outlined">
+          </Grid>
+          <Grid item xs={3}>
             <OutlinedInput
               onInput={(event: ChangeEvent<HTMLInputElement>) => {
-                setData({ ...data, hotelCount: parseInt(event.target.value, 10) });
+                setData({ ...data, hotelCount: parseFloat(event.target.value) });
               }}
               placeholder="Nb. Hôtels"
             />
-          </FormControl>
-          <FormControl sx={{ width: 0.22, paddingRight: 3 }} variant="outlined">
+          </Grid>
+          <Grid item xs={3}>
             <OutlinedInput
               onInput={(event: ChangeEvent<HTMLInputElement>) => {
-                setData({ ...data, salaryAverage: parseInt(event.target.value, 10) });
+                setData({ ...data, salaryAverage: parseFloat(event.target.value) });
               }}
               placeholder="Revenu Moy"
             />
-          </FormControl>
-          <FormControl sx={{ width: 0.22 }} variant="outlined">
+          </Grid>
+          <Grid item xs={3}>
             <OutlinedInput
               onInput={(event: ChangeEvent<HTMLInputElement>) => {
-                setData({ ...data, surfaceArea: parseInt(event.target.value, 10) });
+                setData({ ...data, surfaceArea: parseFloat(event.target.value) });
               }}
               placeholder="Superficie"
             />
-          </FormControl>
-          <FormControlLabel
-            className={style.input}
-            control={
-              <Switch
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                  setData({ ...data, isActive: event.target.checked });
-                }}
-              />
-            }
-            label="Activer"
-          />
-        </div>
+          </Grid>
+        </Grid>
+
+        <FormControlLabel
+          className={style.input}
+          control={
+            <Switch
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                setData({ ...data, isActive: event.target.checked });
+              }}
+            />
+          }
+          label="Activer"
+        />
         <Actions>
           <Button style={{ color: 'grey', fontWeight: 'bold' }} onClick={onClose}>
             Annuler

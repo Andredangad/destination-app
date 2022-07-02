@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import React, { FC, useContext, useState } from 'react';
 import AddDestination from '../components/Destinations/AddDestination';
 import { Context as DestinationContext } from '../components/Destinations/Context';
+import Destinations from '../components/Destinations/Destinations';
 import Actions from '../components/shared/Actions';
 import { Destination } from '../types';
 // import logo from '../img/logo.svg';
@@ -26,6 +27,7 @@ export const RootPage: FC = () => {
         </Button>
       </Actions>
       <AddDestination addDestination={addDestination} isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
+      <Destinations destinations={destinations} />
     </div>
   );
 };

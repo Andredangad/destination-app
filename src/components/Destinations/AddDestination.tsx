@@ -17,6 +17,7 @@ import Actions from '../shared/Actions';
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  addDestination: (data: Destination) => void;
 }
 
 // function isValidImageUrl(imageUrl: string) {
@@ -40,7 +41,7 @@ function isDestinationValid(destination: Destination): boolean {
   );
 }
 
-export default function AddDestination({ isOpen, onClose }: Props) {
+export default function AddDestination({ isOpen, onClose, addDestination }: Props) {
   const [data, setData] = useState<Destination>({
     id: 0,
     address: '',
@@ -50,8 +51,10 @@ export default function AddDestination({ isOpen, onClose }: Props) {
     name: '',
     salaryAverage: -1,
     surfaceArea: -1,
+    isActive: false,
   });
   const handleSubmit = () => {
+    addDestination(data);
     onClose();
   };
   return (
@@ -122,7 +125,17 @@ export default function AddDestination({ isOpen, onClose }: Props) {
               placeholder="Superficie"
             />
           </FormControl>
-          <FormControlLabel className={style.input} control={<Switch />} label="Activer" />
+          <FormControlLabel
+            className={style.input}
+            control={
+              <Switch
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                  setData({ ...data, isActive: event.target.checked });
+                }}
+              />
+            }
+            label="Activer"
+          />
         </div>
         <Actions>
           <Button style={{ color: 'grey', fontWeight: 'bold' }} onClick={onClose}>

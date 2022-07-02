@@ -1,16 +1,22 @@
 import { css, cx } from '@emotion/css';
 import Button from '@mui/material/Button';
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import AddDestination from '../components/Destinations/AddDestination';
+import { Context as DestinationContext } from '../components/Destinations/Context';
 import Actions from '../components/shared/Actions';
+import { Destination } from '../types';
 // import logo from '../img/logo.svg';
 import './App.css';
 
 // interface Props {}
 
 export const RootPage: FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { destinations, setDestinations } = useContext(DestinationContext);
   const [isAddOpen, setIsAddOpen] = useState(false);
-  console.log(isAddOpen);
+  const addDestination = (destination: Destination) => {
+    setDestinations([...destinations, destination]);
+  };
   return (
     <div className={style.global}>
       <div className={style.title}>Destinations</div>
@@ -19,7 +25,7 @@ export const RootPage: FC = () => {
           + Ajouter
         </Button>
       </Actions>
-      <AddDestination isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
+      <AddDestination addDestination={addDestination} isOpen={isAddOpen} onClose={() => setIsAddOpen(false)} />
     </div>
   );
 };

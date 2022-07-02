@@ -7,4 +7,5 @@ export interface Destination {
   hotelCount: number;
   salaryAverage: number;
   surfaceArea: number;
+  isActive: boolean;
 }

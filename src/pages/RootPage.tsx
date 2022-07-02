@@ -6,13 +6,8 @@ import { Context as DestinationContext } from '../components/Destinations/Contex
 import Destinations from '../components/Destinations/Destinations';
 import Actions from '../components/shared/Actions';
 import { Destination } from '../types';
-// import logo from '../img/logo.svg';
-import './App.css';
-
-// interface Props {}
 
 export const RootPage: FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { destinations, setDestinations } = useContext(DestinationContext);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const addDestination = (destination: Destination) => {

@@ -5,7 +5,6 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, React.Disp
 
   useEffect(() => {
     try {
-      // setData((prevData) => [...prevData, defaultValue]);
       localStorage.setItem(key, JSON.stringify(data));
     } catch (error) {
       console.error(`could not set data to ${key}`, data);

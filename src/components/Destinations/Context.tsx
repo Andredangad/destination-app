@@ -7,8 +7,7 @@ export const Context = React.createContext<{
   setDestinations: (destination: Destination[]) => void;
 }>({
   destinations: [],
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setDestinations: () => {},
+  setDestinations: () => undefined,
 });
 
 export function DestinationContext({ children }: PropsWithChildren): JSX.Element {

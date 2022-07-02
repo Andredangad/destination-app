@@ -33,7 +33,7 @@ function isDestinationValid(destination: Destination): boolean {
 }
 
 export default function AddDestination({ isOpen, onClose, addDestination }: Props) {
-  const [data, setData] = useState<Destination>({
+  const defaultDestination: Destination = {
     id: 0,
     address: '',
     citizenCount: -1,
@@ -43,7 +43,8 @@ export default function AddDestination({ isOpen, onClose, addDestination }: Prop
     salaryAverage: -1,
     surfaceArea: -1,
     isActive: false,
-  });
+  };
+  const [data, setData] = useState<Destination>(defaultDestination);
   const handleSubmit = () => {
     addDestination(data);
     onClose();

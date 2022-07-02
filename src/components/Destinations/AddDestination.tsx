@@ -47,10 +47,15 @@ export default function AddDestination({ isOpen, onClose, addDestination }: Prop
   const [data, setData] = useState<Destination>(defaultDestination);
   const handleSubmit = () => {
     addDestination(data);
+    setData(defaultDestination);
     onClose();
   };
+  const handleClose = () => {
+    onClose();
+    setData(defaultDestination);
+  };
   return (
-    <Modal open={isOpen} onClose={onClose}>
+    <Modal open={isOpen} onClose={handleClose}>
       <Box className={style.box}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Ajouter une nouvelle destination
@@ -132,7 +137,7 @@ export default function AddDestination({ isOpen, onClose, addDestination }: Prop
           label="Activer"
         />
         <Actions>
-          <Button style={{ color: 'grey', fontWeight: 'bold' }} onClick={onClose}>
+          <Button style={{ color: 'grey', fontWeight: 'bold' }} onClick={handleClose}>
             Annuler
           </Button>
           <Button disabled={!isDestinationValid(data)} onClick={handleSubmit}>

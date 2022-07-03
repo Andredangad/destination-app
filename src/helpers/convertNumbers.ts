@@ -1,5 +1,3 @@
-//TODO : test
-
 export function convertNumberToString(numToConvert: number): string {
   const formatter = Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });
   return numToConvert >= 1.0e9
